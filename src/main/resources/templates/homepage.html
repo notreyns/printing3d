@@ -24,11 +24,43 @@
         <p><i>Upload your 3D model, choose from different finishes and materials, select the size of your print, receive a price quote instantly and let us take care of printing and shipping your products.</i></p>
     </div>
 </div>
-
+<div class="container-fluid text-center bg-grey">
+<div class="row text-center slideanim">
+    <div class="col-sm-3">
+        <form action="/orders" method="post" id="userForm">
+    <div class="form-group">
+        <label for="inputName">Name of shape</label>
+        <input type="text" class="form-control" id="inputName" placeholder="">
+        <small id="nameHelp" class="form-text text-muted">Name is case sensitive, please enter name which will match image name on database</small>
+    </div>
+    <div class="form-group">
+        <label for="inputColor">Color</label>
+        <input type="text" class="form-control" id="inputColor" placeholder="Choose a color">
+    </div>
+    <div class="form-group">
+        <label for="inputMaterial">Material</label>
+        <input type="text" class="form-control" id="inputMaterial" placeholder="Choose a material">
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="sendData()">Order</button>
+</form>
+</div>
+</div>
+</div>
 <div th:insert="blocks/footer :: footer"></div>
 
 <script>
-    $(document).ready(function(){
+    function sendData() {
+        console.log( JSON.stringify($("#userForm").serializeArray()));
+        $.ajax({
+            type: "POST",
+            url: "/orders",
+            data: JSON.stringify({"name": $("#inputName").val(), "color": $("#inputColor").val(), "material": $("#inputMaterial").val()}),
+            success: function(){ console.log("OK")},
+            dataType: "json",
+            contentType : "application/json"
+        });
+    }
+        $(document).ready(function(){
         $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
