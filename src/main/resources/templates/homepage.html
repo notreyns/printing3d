@@ -30,36 +30,44 @@
         <form action="/orders" method="post" id="userForm">
     <div class="form-group">
         <label for="inputName">Name of shape</label>
-        <input type="text" class="form-control" id="inputName" placeholder="">
+        <input type="text" name="name" class="form-control" id="inputName" placeholder="">
         <small id="nameHelp" class="form-text text-muted">Name is case sensitive, please enter name which will match image name on database</small>
     </div>
     <div class="form-group">
         <label for="inputColor">Color</label>
-        <input type="text" class="form-control" id="inputColor" placeholder="Choose a color">
+        <input type="text" name="color" class="form-control" id="inputColor" placeholder="Choose a color">
     </div>
     <div class="form-group">
         <label for="inputMaterial">Material</label>
-        <input type="text" class="form-control" id="inputMaterial" placeholder="Choose a material">
+        <input type="text" name="material" class="form-control" id="inputMaterial" placeholder="Choose a material">
     </div>
-    <button type="submit" class="btn btn-primary" onclick="sendData()">Order</button>
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Order</button>
 </form>
 </div>
 </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exModalLabel">Result</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your order has been successfully accepted. Thanks for choosing us!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"><a href="/orders">See my basket</a></button>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:insert="blocks/footer :: footer"></div>
 
 <script>
-    function sendData() {
-        console.log( JSON.stringify($("#userForm").serializeArray()));
-        $.ajax({
-            type: "POST",
-            url: "/orders",
-            data: JSON.stringify({"name": $("#inputName").val(), "color": $("#inputColor").val(), "material": $("#inputMaterial").val()}),
-            success: function(){ console.log("OK")},
-            dataType: "json",
-            contentType : "application/json"
-        });
-    }
         $(document).ready(function(){
         $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
             if (this.hash !== "") {

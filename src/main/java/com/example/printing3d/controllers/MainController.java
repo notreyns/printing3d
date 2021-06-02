@@ -14,17 +14,15 @@ public class MainController {
     @Autowired
     private OrdersRepository ordersRepo;
 
-
-
     @GetMapping("/")
     public String home() {
         return "homepage";
     }
     @PostMapping("/orders")
-    public @ResponseBody
-    String addNewUser(@RequestBody Orders item) {
+    public String addNewOrder(@RequestParam String name,@RequestParam String color, @RequestParam String material, Model model) {
+        Orders item=new Orders(name, color, material);
         ordersRepo.save(item);
-        return "OK";
+        return "redirect:/";
     }
     @GetMapping("/orders")
     public String seeOrders(Model model){

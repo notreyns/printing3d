@@ -15,8 +15,8 @@
     <div class="row text-center slideanim">
         <div class="col-sm-4" th:each="element: ${orders}">
             <div class="thumbnail">
-                <img th:src="'/images/' + ${element.imageName} +'.png'" alt="shape img" width="400" height="300">
-                <h3 th:text="${element.imageName}"></h3>
+                <img th:src="'/images/' + ${element.name} +'.png'" alt="shape img" width="400" height="300">
+                <h3 th:text="${element.name}"></h3>
                 <p th:text="${element.material}"><strong></strong></p>
                 <p th:text="${element.color}"></p>
                 <p><button type="button" class="btn">Delete</button></p>
@@ -25,6 +25,5 @@
     </div>
 </div>
 <div th:insert="blocks/footer :: footer"></div>
-
 </body>
 </html>

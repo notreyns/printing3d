@@ -10,14 +10,13 @@ public class Orders {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
-        private String imageName;
+        private String name;
         private String color;
         private String material;
 
         public Orders(){ }
-        public Orders(Integer id,String imgName, String color,String material) {
-            this.id=id;
-            this.imageName=imgName;
+        public Orders(String imgName, String color,String material) {
+            this.name=imgName;
             this.color=color;
             this.material=material;
         }
@@ -25,16 +24,16 @@ public class Orders {
         @Override
         public String toString() {
             return "Orders{" +
-                    "imageName=" + imageName + '\''+
+                    "imageName=" + name + '\''+
                     ", color=" + color + '\'' +
                     ", material=" + material + '\'' +
                     '}';
         }
-        public void setImageName(String imageName){
-            this.imageName=imageName;
+        public void setName(String imageName){
+            this.name=imageName;
         }
-        public String getImageName() {
-            return imageName;
+        public String getName() {
+            return name;
         }
 
         public Integer getId() {
