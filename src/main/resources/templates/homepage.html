@@ -21,31 +21,50 @@
 <div class="jumbotron text-center">
     <div class="text-block">
         <h1 style="font-family:'Kaushan Script', cursive;">3d Printing Service</h1>
-        <p><i>Upload your 3D model, choose from different finishes and materials, select the size of your print, receive a price quote instantly and let us take care of printing and shipping your products.</i></p>
+        <p><i>Upload your 3D model, choose from different finishes and materials, select the size of your print, receive
+            a price quote instantly and let us take care of printing and shipping your products.</i></p>
     </div>
 </div>
 <div class="container-fluid text-center bg-grey">
-<div class="row text-center slideanim">
-    <div class="col-sm-3">
-        <form action="/orders" method="post" id="userForm">
-    <div class="form-group">
-        <label for="inputName">Name of shape</label>
-        <input type="text" name="name" class="form-control" id="inputName" placeholder="">
-        <small id="nameHelp" class="form-text text-muted">Name is case sensitive, please enter name which will match image name on database</small>
-    </div>
-    <div class="form-group">
-        <label for="inputColor">Color</label>
-        <input type="text" name="color" class="form-control" id="inputColor" placeholder="Choose a color">
-    </div>
-    <div class="form-group">
-        <label for="inputMaterial">Material</label>
-        <input type="text" name="material" class="form-control" id="inputMaterial" placeholder="Choose a material">
-    </div>
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Order</button>
-</form>
+    <form action="/orders" method="post" id="userForm">
+        <div class="row text-center slideanim col-sm-6">
+            <div class="form-group">
+                <label for="inputName">Name of shape</label>
+                <input type="text" name="name" class="form-control" id="inputName" placeholder="">
+                <small id="nameHelp" class="form-text text-muted">Name is case sensitive, please enter name which will
+                    match image name on database</small>
+            </div>
+            <div class="form-group">
+                <label for="inputColor">Color</label>
+                <input type="text" name="color" class="form-control" id="inputColor" placeholder="Choose a color">
+            </div>
+            <div class="form-group">
+                <label for="inputMaterial">Material</label>
+                <input type="text" name="material" class="form-control" id="inputMaterial"
+                       placeholder="Choose a material">
+            </div>
+        </div>
+        <div class="row text-center slideanim col-sm-3">
+
+            <div class="form-group">
+                <label for="chooseSize">Size</label>
+                <div class="radio" th:each="el: ${size}">
+                    <div>
+                    <label><input type="radio" name="sizeradio" id="chooseSize" checked th:text="${el.sizeName}"
+                                  th:value="${el.id}"></label>
+                    </div>
+                    <div class="block-text" th:id="'block-'+${el.id}">
+                        <p th:text="'Price is ' + ${el.price} +'$'"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Order</button>
+    </form>
+
 </div>
-</div>
-</div>
+
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -68,22 +87,28 @@
 <div th:insert="blocks/footer :: footer"></div>
 
 <script>
-        $(document).ready(function(){
-        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    $('input[name="sizeradio"]').click(function () {
+        var target = $('#block-' + $(this).val());
+
+        $('.block-text').not(target).hide(0);
+        target.fadeIn(500);
+    });
+    $(document).ready(function () {
+        $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
             if (this.hash !== "") {
                 event.preventDefault();
                 var hash = this.hash;
 
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top
-                }, 900, function(){
+                }, 900, function () {
                     window.location.hash = hash;
                 });
             }
         });
 
-        $(window).scroll(function() {
-            $(".slideanim").each(function(){
+        $(window).scroll(function () {
+            $(".slideanim").each(function () {
                 var pos = $(this).offset().top;
 
                 var winTop = $(window).scrollTop();
