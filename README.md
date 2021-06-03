@@ -11,3 +11,14 @@ https://cs204neworderingapp.herokuapp.com/
 ****
 * ## you can delete item from basket
 ![](https://imgur.com/Nlm5cAv.jpg)
+****
+## Technologies:
+* Bootstrap
+* Postgre
+* rest api
+* little bit of jguery:)
+## Rest api accessors:
+- main page on /
+- Here size of item and price are cnnected. you can add them by size/add
+- basket is available in /orders. Posting also was implemented here
+- to delete item from basket, go to /orders/{id}/delete
