@@ -13,22 +13,18 @@ public class Orders {
         private String name;
         private String color;
         private String material;
+        private String sizeradio;
+        private String price;
 
         public Orders(){ }
-        public Orders(String imgName, String color,String material) {
+        public Orders(String imgName, String color,String material, String sizeradio, String price) {
             this.name=imgName;
             this.color=color;
             this.material=material;
+            this.sizeradio=sizeradio;
+            this.price=price;
         }
 
-        @Override
-        public String toString() {
-            return "Orders{" +
-                    "imageName=" + name + '\''+
-                    ", color=" + color + '\'' +
-                    ", material=" + material + '\'' +
-                    '}';
-        }
         public void setName(String imageName){
             this.name=imageName;
         }
@@ -58,6 +54,22 @@ public class Orders {
 
     public void setMaterial(String material) {
         this.material = material;
+    }
+
+    public String getSizeradio() {
+        return sizeradio;
+    }
+
+    public void setSizeradio(String sizeradio) {
+        this.sizeradio = sizeradio;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
 

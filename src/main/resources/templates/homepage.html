@@ -54,7 +54,9 @@
                                   th:value="${el.id}"></label>
                     </div>
                     <div class="block-text" th:id="'block-'+${el.id}">
-                        <p th:text="'Price is ' + ${el.price} +'$'"></p>
+                        <input class="form-control"
+                               type="text"
+                               th:value="'Price is ' + ${el.price} +'$'" id="price" name="price" readonly />
                     </div>
                 </div>
             </div>

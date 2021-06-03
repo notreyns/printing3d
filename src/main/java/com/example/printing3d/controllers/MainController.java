@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Controller
 @RequestMapping("/")
@@ -24,21 +27,28 @@ public class MainController {
         return "homepage";
     }
     @PostMapping("/orders")
-    public String addNewOrder(@RequestParam String name,@RequestParam String color, @RequestParam String material, Model model) {
-        Orders item=new Orders(name, color, material);
+    public String addNewOrder(@RequestParam String name,@RequestParam String color, @RequestParam String material,@RequestParam String sizeradio, @RequestParam String price, Model model) {
+        Orders item=new Orders(name, color, material, sizeradio, price);
         ordersRepo.save(item);
         return "redirect:/";
     }
     @GetMapping("/orders")
-    public String seeOrders(Model model){
+    public String seeOrders( Model model){
         model.addAttribute("orders", ordersRepo.findAll());
         return "basket";
     }
     @PostMapping("/size/add")
     public @ResponseBody
-    String addNewMaterial(@RequestBody Size size) {
+    String addNewSize(@RequestBody Size size) {
         sizeRepo.save(size);
         return "OK";
     }
+    @PostMapping("/orders/{id}/delete")
+    public String orderDelete(@PathVariable(value="id") int id, Model model){
+        Orders item = ordersRepo.findById(id).orElseThrow(IllegalStateException::new);
+        ordersRepo.delete(item);
+        return "redirect:/orders";
+    }
+
 }
 

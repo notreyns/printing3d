@@ -19,7 +19,11 @@
                 <h3 th:text="${element.name}"></h3>
                 <p th:text="${element.material}"><strong></strong></p>
                 <p th:text="${element.color}"></p>
-                <p><button type="button" class="btn">Delete</button></p>
+                <p th:text="${element.sizeradio}"></p>
+                <p th:text="${element.getPrice()}"></p>
+                <form th:action="'/orders/'+${element.id}+'/delete'" method="post">
+                <p><button type="submit" class="btn">Delete</button></p>
+                </form>
             </div>
         </div>
     </div>
