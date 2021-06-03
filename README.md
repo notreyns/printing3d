@@ -22,3 +22,4 @@ https://cs204neworderingapp.herokuapp.com/
 - Here size of item and price are cnnected. you can add them by size/add
 - basket is available in /orders. Posting also was implemented here
 - to delete item from basket, go to /orders/{id}/delete
+## Make sure to upload image to /images/YOUR_IMAGE_NAME.png. 
