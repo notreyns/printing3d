@@ -16,6 +16,7 @@ https://cs204neworderingapp.herokuapp.com/
 * Bootstrap
 * Postgre
 * rest api
+* tutorial.md
 * little bit of jguery:)
 ## Rest api accessors:
 - main page on /
