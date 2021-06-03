@@ -44,20 +44,14 @@
                        placeholder="Choose a material">
             </div>
         </div>
-        <div class="row text-center slideanim col-sm-3">
-
+        <div class="row text-center slideanim col-sm-6">
             <div class="form-group">
                 <label for="chooseSize">Size</label>
+                <p id="sizeHelp" class="form-text text-muted">Price varies depending on the size of 3d figure</p>
                 <div class="radio" th:each="el: ${size}">
-                    <div>
-                    <label><input type="radio" name="sizeradio" id="chooseSize" checked th:text="${el.sizeName}"
-                                  th:value="${el.id}"></label>
-                    </div>
-                    <div class="block-text" th:id="'block-'+${el.id}">
-                        <input class="form-control"
-                               type="text"
-                               th:value="'Price is ' + ${el.price} +'$'" id="price" name="price" readonly />
-                    </div>
+                    <input type="radio" name="sizeradio" id="chooseSize" checked th:text="${el.sizeName}"
+                                  th:value="${el.sizeName}"/>
+                        <input type="text" name="price" th:value="'$'+${el.price}" readonly />
                 </div>
             </div>
         </div>

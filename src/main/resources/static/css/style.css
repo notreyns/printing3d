@@ -21,7 +21,7 @@ h3 {
 .jumbotron {
     color: #fff;
     padding: 200px 25px;
-
+    background-image: url('/images/wallpaper.png');
     position: relative;
 }
 .text-block {
